@@ -24,7 +24,7 @@ app.use(function (req, res, next) {
 
 db.connect()
 
-app.get('/getAccount', (req, res)=>{
+app.get('/api/getAccount', (req, res)=>{
     let sql = `select * from account`
     db.query(sql, (err, result)=>{
         if (err) throw err
@@ -32,7 +32,7 @@ app.get('/getAccount', (req, res)=>{
     })
 })
 
-app.post('/addAccount', (req, res)=>{
+app.post('/api/addAccount', (req, res)=>{
     let data = {
         id: null,
         username: req.body.username,
