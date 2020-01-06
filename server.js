@@ -45,3 +45,27 @@ app.post('/api/addAccount', (req, res)=>{
         res.send(result)
     })
 })
+
+app.delete('/api/deleteAccount/:id', (req, res)=>{
+    let data = {
+        id: req.body.id
+    }
+    let sql = 'delete from account where id = ?'
+    db.query(sql, data.id, (err, result)=>{
+        if (err) throw err
+        res.send(result)
+    })
+})
+
+app.put('/api/updateAccount/:id', (req, res)=>{
+    let data = {
+        id: req.body.id,
+        username: req.body.username,
+        password: req.body.password
+    }
+    let sql = 'update account set username = ?, password = ? where id = ?'
+    db.query(sql, [data.username, data.password, data.id], (err, result)=>{
+        if (err) throw err
+        res.send(result)
+    })
+})
